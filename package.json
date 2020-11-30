@@ -31,7 +31,9 @@
     "build": "react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject",
-    "deploy": "gh-pages -b master -r https://github.com/peak3d/peak3d.github.io.git -d build"
+    "deploy": "gh-pages -b master -r https://github.com/peak3d/peak3d.github.io.git -d build",
+    "format": "prettier --write .",
+    "lint": "prettier --check ."
   },
   "eslintConfig": {
     "extends": [
@@ -50,5 +52,8 @@
       "last 1 firefox version",
       "last 1 safari version"
     ]
+  },
+  "devDependencies": {
+    "prettier": "^2.2.1"
   }
 }
