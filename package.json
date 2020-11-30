@@ -4,6 +4,7 @@
   "homepage": "https://peak3d.github.io",
   "private": true,
   "scripts": {
+    "audit": "audit-ci --moderate --package-manager npm",
     "build": "react-scripts build",
     "deploy": "gh-pages -b master -r https://github.com/peak3d/peak3d.github.io.git -d build",
     "eject": "react-scripts eject",
@@ -36,6 +37,7 @@
     "web3modal": "^1.9.1"
   },
   "devDependencies": {
+    "audit-ci": "^3.1.1",
     "prettier": "^2.2.1",
     "prettier-plugin-pkg": "^0.8.0",
     "prettier-plugin-solidity": "^1.0.0-beta.1"
