@@ -1,4 +1,4 @@
-import createBreakpoints from '@material-ui/core/styles/createBreakpoints'
+import createBreakpoints from '@material-ui/core/styles/createBreakpoints';
 
 import WorkSansTTF from '../assets/fonts/WorkSans-VariableFont_wght.ttf';
 
@@ -17,155 +17,155 @@ const WorkSans = {
 };
 
 export const colors = {
-  white: "#f2f4f7",
-  whiteLight: "#f2f4f78c",
-  black: "#000",
-  darkBlue: "#2c3b57",
-  blue: "#2F80ED",
-  gray: "#e1e1e1",
-  darkGray: "#828282",
-  lightGray: "rgb(247,248,250)",
-  lightBlack: "#6a6a6a",
-  darkBlack: "#141414",
-  green: "#1abc9c",
-  red: "#ed4337",
-  orange: "orange",
-  pink: "#DC6BE5",
-  compoundGreen: "#00d395",
-  tomato: "#e56b73",
-  purple: "#935dff",
+  white: '#f2f4f7',
+  whiteLight: '#f2f4f78c',
+  black: '#000',
+  darkBlue: '#2c3b57',
+  blue: '#2F80ED',
+  gray: '#e1e1e1',
+  darkGray: '#828282',
+  lightGray: 'rgb(247,248,250)',
+  lightBlack: '#6a6a6a',
+  darkBlack: '#141414',
+  green: '#1abc9c',
+  red: '#ed4337',
+  orange: 'orange',
+  pink: '#DC6BE5',
+  compoundGreen: '#00d395',
+  tomato: '#e56b73',
+  purple: '#935dff',
 
-  text: "#212529",
-  lightBlue: "#2F80ED",
-  topaz: "rgba(17,92,242)",
-  borderGray: "#9C9DA0",
-  borderBlue: "rgb(99,104,247)",
-  investGray: "rgb(247,248,250)",
+  text: '#212529',
+  lightBlue: '#2F80ED',
+  topaz: 'rgba(17,92,242)',
+  borderGray: '#9C9DA0',
+  borderBlue: 'rgb(99,104,247)',
+  investGray: 'rgb(247,248,250)',
 };
 
 const breakpoints = createBreakpoints({
-  keys: ["xs", "sm", "md", "lg", "xl", "xxl"],
+  keys: ['xs', 'sm', 'md', 'lg', 'xl', 'xxl'],
   values: {
     xs: 0,
     sm: 600,
     md: 900,
     lg: 1200,
     xl: 1800,
-    xxl: 2560
-  }
-})
+    xxl: 2560,
+  },
+});
 
 const iswapTheme = {
   typography: {
     fontFamily: [
       '"Work Sans Thin"',
-      "BlinkMacSystemFont",
+      'BlinkMacSystemFont',
       '"Segoe UI"',
-      "Roboto",
+      'Roboto',
       '"Helvetica Neue"',
-      "Arial",
-      "sans-serif",
+      'Arial',
+      'sans-serif',
       '"Apple Color Emoji"',
       '"Segoe UI Emoji"',
       '"Segoe UI Symbol"',
-    ].join(","),
+    ].join(','),
     h1: {
-      fontSize: "48px",
-      fontWeight: "300",
-      WebkitFontSmoothing: "antialiased",
-      MozOsxFontSmoothing: "grayscale",
+      fontSize: '48px',
+      fontWeight: '300',
+      WebkitFontSmoothing: 'antialiased',
+      MozOsxFontSmoothing: 'grayscale',
       lineHeight: 1.2,
     },
     h2: {
-      fontSize: "36px",
-      fontWeight: "300",
-      WebkitFontSmoothing: "antialiased",
-      MozOsxFontSmoothing: "grayscale",
+      fontSize: '36px',
+      fontWeight: '300',
+      WebkitFontSmoothing: 'antialiased',
+      MozOsxFontSmoothing: 'grayscale',
       lineHeight: 1.2,
     },
     h3: {
-      fontSize: "22px",
-      fontWeight: "300",
-      WebkitFontSmoothing: "antialiased",
-      MozOsxFontSmoothing: "grayscale",
+      fontSize: '22px',
+      fontWeight: '300',
+      WebkitFontSmoothing: 'antialiased',
+      MozOsxFontSmoothing: 'grayscale',
       lineHeight: 1.2,
     },
     h4: {
-      fontSize: "16px",
-      fontWeight: "300",
-      WebkitFontSmoothing: "antialiased",
-      MozOsxFontSmoothing: "grayscale",
+      fontSize: '16px',
+      fontWeight: '300',
+      WebkitFontSmoothing: 'antialiased',
+      MozOsxFontSmoothing: 'grayscale',
       lineHeight: 1.2,
     },
     h5: {
-      fontSize: "14px",
-      fontWeight: "300",
-      WebkitFontSmoothing: "antialiased",
-      MozOsxFontSmoothing: "grayscale",
+      fontSize: '14px',
+      fontWeight: '300',
+      WebkitFontSmoothing: 'antialiased',
+      MozOsxFontSmoothing: 'grayscale',
       lineHeight: 1.2,
     },
     body1: {
-      fontSize: "16px",
-      fontWeight: "300",
-      WebkitFontSmoothing: "antialiased",
-      MozOsxFontSmoothing: "grayscale",
+      fontSize: '16px',
+      fontWeight: '300',
+      WebkitFontSmoothing: 'antialiased',
+      MozOsxFontSmoothing: 'grayscale',
     },
     body2: {
-      fontSize: "16px",
-      fontWeight: "300",
-      WebkitFontSmoothing: "antialiased",
-      MozOsxFontSmoothing: "grayscale",
+      fontSize: '16px',
+      fontWeight: '300',
+      WebkitFontSmoothing: 'antialiased',
+      MozOsxFontSmoothing: 'grayscale',
     },
   },
-  type: "light",
+  type: 'light',
   overrides: {
     MuiCssBaseline: {
-      "@global": {
-        "@font-face": [WorkSans],
+      '@global': {
+        '@font-face': [WorkSans],
       },
     },
     MuiSelect: {
       select: {
-        padding: "9px",
+        padding: '9px',
       },
       selectMenu: {
-        minHeight: "30px",
-        display: "flex",
-        alignItems: "center",
+        minHeight: '30px',
+        display: 'flex',
+        alignItems: 'center',
       },
     },
     MuiButton: {
       root: {
-        padding: "10px 24px",
+        padding: '10px 24px',
       },
       outlined: {
-        padding: "10px 24px",
-        borderWidth: "2px !important",
+        padding: '10px 24px',
+        borderWidth: '2px !important',
       },
       text: {
-        padding: "10px 24px",
+        padding: '10px 24px',
       },
       label: {
-        textTransform: "none",
-        fontSize: "1rem",
+        textTransform: 'none',
+        fontSize: '1rem',
       },
     },
     MuiInputBase: {
       input: {
-        fontSize: "16px",
-        fontWeight: "300",
-        WebkitFontSmoothing: "antialiased",
-        MozOsxFontSmoothing: "grayscale",
+        fontSize: '16px',
+        fontWeight: '300',
+        WebkitFontSmoothing: 'antialiased',
+        MozOsxFontSmoothing: 'grayscale',
         lineHeight: 1.2,
       },
     },
     MuiOutlinedInput: {
       input: {
-        "&::placeholder": {
+        '&::placeholder': {
           color: colors.text,
         },
         color: colors.text,
-        padding: "14px",
+        padding: '14px',
       },
       root: {
         // border: "none !important"
@@ -176,94 +176,94 @@ const iswapTheme = {
     },
     MuiSnackbar: {
       root: {
-        maxWidth: "calc(100vw - 24px)",
+        maxWidth: 'calc(100vw - 24px)',
       },
       anchorOriginBottomLeft: {
-        bottom: "12px",
-        left: "12px",
-        "@media (min-width: 960px)": {
-          bottom: "50px",
-          left: "80px",
+        bottom: '12px',
+        left: '12px',
+        '@media (min-width: 960px)': {
+          bottom: '50px',
+          left: '80px',
         },
       },
     },
     MuiSnackbarContent: {
       root: {
         backgroundColor: colors.whiteLight,
-        padding: "0px",
-        minWidth: "auto",
-        "@media (min-width: 960px)": {
-          minWidth: "500px",
+        padding: '0px',
+        minWidth: 'auto',
+        '@media (min-width: 960px)': {
+          minWidth: '500px',
         },
       },
       message: {
-        padding: "0px",
+        padding: '0px',
       },
       action: {
-        marginRight: "0px",
+        marginRight: '0px',
       },
     },
     MuiAccordion: {
       root: {
-        border: "1px solid " + colors.borderGray,
-        margin: "8px 0px",
-        "&:before": {
+        border: '1px solid ' + colors.borderGray,
+        margin: '8px 0px',
+        '&:before': {
           //underline color when textfield is inactive
           backgroundColor: colors.whiteLight,
-          height: "0px",
+          height: '0px',
         },
       },
     },
     MuiAccordionSummary: {
       root: {
         backgroundColor: colors.whiteLight,
-        padding: "12px 24px",
-        "@media (min-width: 960px)": {
-          padding: "30px 42px",
+        padding: '12px 24px',
+        '@media (min-width: 960px)': {
+          padding: '30px 42px',
         },
       },
       content: {
-        margin: "0px !important",
+        margin: '0px !important',
       },
       assetSummary: {
         backgroundColor: colors.whiteLight,
       },
       MuiSvgIcon: {
         root: {
-          color: "#4147F6",
+          color: '#4147F6',
         },
       },
     },
     MuiAccordionDetails: {
       root: {
         backgroundColor: colors.whiteLight,
-        padding: "0 12px 15px 12px",
-        "@media (min-width: 960px)": {
-          padding: "0 24px 30px 24px",
+        padding: '0 12px 15px 12px',
+        '@media (min-width: 960px)': {
+          padding: '0 24px 30px 24px',
         },
       },
     },
     MuiToggleButton: {
       root: {
-        textTransform: "none",
-        minWidth: "100px",
-        border: "none",
+        textTransform: 'none',
+        minWidth: '100px',
+        border: 'none',
         background: colors.borderBlue,
-        "& > span > h4": {
-          color: "#555",
+        '& > span > h4': {
+          color: '#555',
         },
-        "&:hover": {
+        '&:hover': {
           backgroundColor: colors.whiteLight,
         },
-        "&$selected": {
+        '&$selected': {
           backgroundColor: colors.whiteLight,
-          "& > span > h4": {
-            color: "#fff",
+          '& > span > h4': {
+            color: '#fff',
           },
-          "&:hover": {
+          '&:hover': {
             backgroundColor: colors.whiteLight,
-            "& > span > h4": {
-              color: "#000",
+            '& > span > h4': {
+              color: '#000',
             },
           },
         },
@@ -271,24 +271,24 @@ const iswapTheme = {
     },
     MuiPaper: {
       elevation1: {
-        boxShadow: "none",
+        boxShadow: 'none',
       },
     },
     MuiToggleButtonGroup: {
       root: {
-        border: "1px solid " + colors.borderGray,
+        border: '1px solid ' + colors.borderGray,
       },
       groupedSizeSmall: {
-        padding: "42px 30px",
+        padding: '42px 30px',
       },
     },
     MuiFormControlLabel: {
       label: {
         color: colors.borderBlue,
-        fontSize: "14px",
-        fontWeight: "300",
-        WebkitFontSmoothing: "antialiased",
-        MozOsxFontSmoothing: "grayscale",
+        fontSize: '14px',
+        fontWeight: '300',
+        WebkitFontSmoothing: 'antialiased',
+        MozOsxFontSmoothing: 'grayscale',
         lineHeight: 1.2,
       },
     },
