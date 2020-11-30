@@ -1,8 +1,17 @@
 {
   "name": "KJX.finance",
   "version": "0.1.0",
-  "private": true,
   "homepage": "https://peak3d.github.io",
+  "private": true,
+  "scripts": {
+    "build": "react-scripts build",
+    "deploy": "gh-pages -b master -r https://github.com/peak3d/peak3d.github.io.git -d build",
+    "eject": "react-scripts eject",
+    "format": "prettier --write .",
+    "lint": "prettier --check .",
+    "start": "react-scripts start",
+    "test": "react-scripts test"
+  },
   "dependencies": {
     "@material-ui/core": "^4.11.0",
     "@material-ui/icons": "^4.9.1",
@@ -26,20 +35,9 @@
     "web-vitals": "^0.2.4",
     "web3modal": "^1.9.1"
   },
-  "scripts": {
-    "start": "react-scripts start",
-    "build": "react-scripts build",
-    "test": "react-scripts test",
-    "eject": "react-scripts eject",
-    "deploy": "gh-pages -b master -r https://github.com/peak3d/peak3d.github.io.git -d build",
-    "format": "prettier --write .",
-    "lint": "prettier --check ."
-  },
-  "eslintConfig": {
-    "extends": [
-      "react-app",
-      "react-app/jest"
-    ]
+  "devDependencies": {
+    "prettier": "^2.2.1",
+    "prettier-plugin-pkg": "^0.8.0"
   },
   "browserslist": {
     "production": [
@@ -53,7 +51,10 @@
       "last 1 safari version"
     ]
   },
-  "devDependencies": {
-    "prettier": "^2.2.1"
+  "eslintConfig": {
+    "extends": [
+      "react-app",
+      "react-app/jest"
+    ]
   }
 }
