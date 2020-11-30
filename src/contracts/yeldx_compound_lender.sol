@@ -2,41 +2,60 @@ pragma solidity 0.6.5;
 
 interface IERC20 {
   function totalSupply() external view returns (uint256);
+
   function balanceOf(address account) external view returns (uint256);
+
   function transfer(address recipient, uint256 amount) external returns (bool);
-  function allowance(address owner, address spender) external view returns (uint256);
+
+  function allowance(address owner, address spender)
+    external
+    view
+    returns (uint256);
+
   function approve(address spender, uint256 amount) external returns (bool);
-  function transferFrom(address sender, address recipient, uint256 amount) external returns (bool);
+
+  function transferFrom(
+    address sender,
+    address recipient,
+    uint256 amount
+  ) external returns (bool);
+
   event Transfer(address indexed from, address indexed to, uint256 value);
   event Approval(address indexed owner, address indexed spender, uint256 value);
 }
 
 interface Compound {
-  function mint ( uint256 mintAmount ) external returns (uint256);
+  function mint(uint256 mintAmount) external returns (uint256);
+
   function redeem(uint256 redeemTokens) external returns (uint256);
-  function exchangeRateStored() external view returns (uint);
+
+  function exchangeRateStored() external view returns (uint256);
+
   function supplyRatePerBlock() external view returns (uint256);
+
   function exchangeRateCurrent() external returns (uint256);
 }
 
 library SafeMath {
   function sub(uint256 a, uint256 b) internal pure returns (uint256) {
-    require(b <= a, "SafeMath: Sub failed");
+    require(b <= a, 'SafeMath: Sub failed');
     uint256 c = a - b;
     return c;
   }
+
   function div(uint256 a, uint256 b) internal pure returns (uint256) {
-    require(b > 0, "SafeMath: div failed");
+    require(b > 0, 'SafeMath: div failed');
     uint256 c = a / b;
     return c;
   }
+
   function mul(uint256 a, uint256 b) internal pure returns (uint256) {
     if (a == 0) {
       return 0;
     }
 
     uint256 c = a * b;
-    require(c / a == b, "SafeMath: multiplication overflow");
+    require(c / a == b, 'SafeMath: multiplication overflow');
 
     return c;
   }
@@ -69,41 +88,64 @@ contract CompoundLender {
   address constant cusdt = 0x2fB298BDbeF468638AD6653FF8376575ea41e768;
 
   function getId() external pure returns (bytes32) {
-    return keccak256(abi.encodePacked("CompoundLender"));
+    return keccak256(abi.encodePacked('CompoundLender'));
   }
 
   function approve(address token) external {
-    IERC20(token).approve(_token2cToken(token), uint(-1));
+    IERC20(token).approve(_token2cToken(token), uint256(-1));
   }
 
-  function invest(address token, uint256 assetAmount) external returns(uint256) {
+  function invest(address token, uint256 assetAmount)
+    external
+    returns (uint256)
+  {
     address cToken = _token2cToken(token);
     require(cToken != address(0));
     // mint cToken
     uint256 poolTokens = IERC20(cToken).balanceOf(address(this));
-    require(Compound(cToken).mint(assetAmount) == 0, "COMPOUND: mint failed");
+    require(Compound(cToken).mint(assetAmount) == 0, 'COMPOUND: mint failed');
     return IERC20(cToken).balanceOf(address(this)).sub(poolTokens);
   }
 
-  function redeem(address token, uint256 poolAmount) external returns (uint256) {
+  function redeem(address token, uint256 poolAmount)
+    external
+    returns (uint256)
+  {
     address cToken = _token2cToken(token);
     require(cToken != address(0));
     // redeem tokens to this contract
     uint256 assetTokens = IERC20(token).balanceOf(address(this));
-    require(Compound(cToken).redeem(poolAmount) == 0, "COMPOUND: redeem failed");
+    require(
+      Compound(cToken).redeem(poolAmount) == 0,
+      'COMPOUND: redeem failed'
+    );
     return IERC20(token).balanceOf(address(this)).sub(assetTokens);
   }
 
-  function balanceOf(address token, address _owner) external view returns (uint256) {
+  function balanceOf(address token, address _owner)
+    external
+    view
+    returns (uint256)
+  {
     address cToken = _token2cToken(token);
     require(cToken != address(0));
     return IERC20(cToken).balanceOf(_owner);
   }
 
   // return the amount of the underlying asset
-  function getAssetAmount(address token, address _owner) external view returns (uint256) {
+  function getAssetAmount(address token, address _owner)
+    external
+    view
+    returns (uint256)
+  {
     address cToken = _token2cToken(token);
-    return (IERC20(cToken).balanceOf(_owner).mul(Compound(cToken).exchangeRateStored())).div(1e18);
+    return
+      (
+        IERC20(cToken).balanceOf(_owner).mul(
+          Compound(cToken).exchangeRateStored()
+        )
+      )
+        .div(1e18);
   }
 
   function getApr(address token) external view returns (uint256) {
@@ -118,13 +160,10 @@ contract CompoundLender {
     Compound(_token2cToken(token)).exchangeRateCurrent();
   }
 
-  function _token2cToken(address asset) internal pure returns (address){
-    if (asset == usdc)
-      return cusdc;
-    if (asset == dai)
-      return cdai;
-    if (asset == usdt)
-      return cusdt;
+  function _token2cToken(address asset) internal pure returns (address) {
+    if (asset == usdc) return cusdc;
+    if (asset == dai) return cdai;
+    if (asset == usdt) return cusdt;
     return address(0);
   }
 }
