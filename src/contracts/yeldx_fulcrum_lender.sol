@@ -2,31 +2,55 @@ pragma solidity 0.6.5;
 
 interface IERC20 {
   function totalSupply() external view returns (uint256);
+
   function balanceOf(address account) external view returns (uint256);
+
   function transfer(address recipient, uint256 amount) external returns (bool);
-  function allowance(address owner, address spender) external view returns (uint256);
+
+  function allowance(address owner, address spender)
+    external
+    view
+    returns (uint256);
+
   function approve(address spender, uint256 amount) external returns (bool);
-  function transferFrom(address sender, address recipient, uint256 amount) external returns (bool);
+
+  function transferFrom(
+    address sender,
+    address recipient,
+    uint256 amount
+  ) external returns (bool);
+
   event Transfer(address indexed from, address indexed to, uint256 value);
   event Approval(address indexed owner, address indexed spender, uint256 value);
 }
 
 interface Fulcrum {
-  function mint(address receiver, uint256 amount) external payable returns (uint256 mintAmount);
-  function burn(address receiver, uint256 burnAmount) external returns (uint256 loanAmountPaid);
-  function assetBalanceOf(address _owner) external view returns (uint256 balance);
-  function supplyInterestRate() external view returns (uint256 rate);
+  function mint(address receiver, uint256 amount)
+    external
+    payable
+    returns (uint256 mintAmount);
 
+  function burn(address receiver, uint256 burnAmount)
+    external
+    returns (uint256 loanAmountPaid);
+
+  function assetBalanceOf(address _owner)
+    external
+    view
+    returns (uint256 balance);
+
+  function supplyInterestRate() external view returns (uint256 rate);
 }
 
 library SafeMath {
   function sub(uint256 a, uint256 b) internal pure returns (uint256) {
-    require(b <= a, "SafeMath: Sub failed");
+    require(b <= a, 'SafeMath: Sub failed');
     uint256 c = a - b;
     return c;
   }
+
   function div(uint256 a, uint256 b) internal pure returns (uint256) {
-    require(b > 0, "SafeMath: div failed");
+    require(b > 0, 'SafeMath: div failed');
     uint256 c = a / b;
     return c;
   }
@@ -51,33 +75,49 @@ contract FulcrumLender {
   address constant iusdt = address(0);
 
   function getId() external pure returns (bytes32) {
-    return keccak256(abi.encodePacked("FulcrumLender"));
+    return keccak256(abi.encodePacked('FulcrumLender'));
   }
 
   function approve(address token) external {
-    IERC20(token).approve(_token2iToken(token), uint(-1));
+    IERC20(token).approve(_token2iToken(token), uint256(-1));
   }
 
-  function invest(address token, uint256 assetAmount) external returns(uint256) {
+  function invest(address token, uint256 assetAmount)
+    external
+    returns (uint256)
+  {
     // mint iToken
-    uint256 poolTokens = Fulcrum(_token2iToken(token)).mint(address(this), assetAmount);
-    require(poolTokens > 0, "Fulcrum: mint failed");
+    uint256 poolTokens =
+      Fulcrum(_token2iToken(token)).mint(address(this), assetAmount);
+    require(poolTokens > 0, 'Fulcrum: mint failed');
     return poolTokens;
   }
 
-  function redeem(address token, uint256 poolAmount) external returns (uint256) {
+  function redeem(address token, uint256 poolAmount)
+    external
+    returns (uint256)
+  {
     // redeem tokens to this contract
-    uint256 assetTokens = Fulcrum(_token2iToken(token)).burn(address(this), poolAmount);
-    require(assetTokens > 0, "Fulcrum: burn failed");
+    uint256 assetTokens =
+      Fulcrum(_token2iToken(token)).burn(address(this), poolAmount);
+    require(assetTokens > 0, 'Fulcrum: burn failed');
     return assetTokens;
   }
 
-  function balanceOf(address token, address _owner) external view returns (uint256) {
+  function balanceOf(address token, address _owner)
+    external
+    view
+    returns (uint256)
+  {
     return IERC20(_token2iToken(token)).balanceOf(_owner);
   }
 
   // return the amount of the underlying asset
-  function getAssetAmount(address token, address _owner) external view returns (uint256) {
+  function getAssetAmount(address token, address _owner)
+    external
+    view
+    returns (uint256)
+  {
     return Fulcrum(_token2iToken(token)).assetBalanceOf(_owner);
   }
 
@@ -85,16 +125,12 @@ contract FulcrumLender {
     return Fulcrum(_token2iToken(token)).supplyInterestRate().div(100);
   }
 
-  function refresh(address token) external {
-  }
+  function refresh(address token) external {}
 
-  function _token2iToken(address asset) internal pure returns (address){
-    if (asset == usdc)
-      return iusdc;
-    if (asset == dai)
-      return idai;
-    if (asset == usdt)
-      return iusdt;
+  function _token2iToken(address asset) internal pure returns (address) {
+    if (asset == usdc) return iusdc;
+    if (asset == dai) return idai;
+    if (asset == usdt) return iusdt;
     return address(0);
   }
 }
